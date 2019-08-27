@@ -14,18 +14,24 @@
 
         <form id="accountForm" action="index.html" method="post">
           <label for="">Name:</label>
-          <input type="text" id="userInput">
+          <input type="text" id="name">
           <label for="">Initial Deposit:</label>
-          <input type="text" id="userInput">
+          <input type="text" id="initialDeposit">
           <button type="submit" name="button">Submit</button>
         </form>
 
-        <form id="moneyForm" action="index.html" method="post">
-          <label for="">Deposit Amount:</label>
-          <input type="text" name="" value="">
-          <label for="">Withdrawl Amount:</label>
-          <input type="text" name="" value="">
-          <button type="submit" name="button">Submit</button>
+        <form id="depositForm" action="index.html" method="post">
+          <label for="deposit">Deposit Amount:</label>
+          <input type="text" id='deposit'>
+
+          <button type="submit" name="button">Deposit</button>
+        </form>
+
+        <form id="withdrawForm" action="index.html" method="post">
+          <label for="withdraw">Withdrawl Amount:</label>
+          <input type="text" id='withdraw'>
+
+          <button type="submit" name="button">Withdraw</button>
         </form>
 
         <label for="">Current Balance</label>
