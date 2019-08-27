@@ -1,22 +1,34 @@
-//business logic
-function bank(account) {
-  this.accounts = []
+// bank logic
+function Bank(account) {
+  this.accounts = [],
+  this.currentId = 0;
 }
 
-function Account(name, balance) {
-  this.name = name,
-  this.balance = balance
-  this.currentId = 0
-}
-
-Account.prototype.addAccount = function(account) {
+Bank.prototype.addToBank = function(account) {
   account.id = this.assignId();
   this.accounts.push(account);
 }
 
-Account.prototype.assignId = function() {
+Bank.prototype.assignId = function() {
   this.currentId =+ 1;
   return this.currentId;
+}
+
+Bank.prototype.findAccount = function(id) {
+  for (var i = 0; i < this.accounts.length; i++) {
+    if (this.accounts[i]) {
+      if (this.accounts[i].id === id) {
+        return this.accounts[i];
+      }
+    }
+  };
+  return false;
+};
+
+// account logic
+function Account(name, balance) {
+  this.name = name,
+  this.balance = balance
 }
 
 Account.prototype.depositMoney = function(depositAmount) {
@@ -24,28 +36,35 @@ Account.prototype.depositMoney = function(depositAmount) {
   return this.balance
 }
 
+Account.prototype.withdrawMoney = function(withdrawAmount) {
+  this.balance -= withdrawAmount
+  return this.balance
+}
 //user interface
 $(document).ready(function(){
+  var bank = new Bank();
+
   $("form#accountForm").submit(function(event){
     event.preventDefault();
     var inputtedName = $("input#name").val();
     var inputtedDeposit = parseInt($("input#initialDeposit").val());
     var newAccount = new Account(inputtedName, inputtedDeposit);
-    accounts.push(newAccount);
+    // .addToBank(newAccount);
     console.log(newAccount);
-    console.log(bank);
   });
 
   $("form#depositForm").submit(function(Event){
     event.preventDefault();
     var depositAmount = parseInt($('input#deposit').val());
-    var newBalance = newAccount.depositMoney(depositAmount);
-    console.log(newBalance);
+    console.log(depositAmount);
+    var newBalance = newAccount.depositMoney(depositAmount);    console.log(newBalance);
   });
 
   $('form#withdrawForm').submit(function(event) {
     event.preventDefault();
     var withdrawAmount = parseInt($('input#withdraw').val());
+    var newBalance = newAccount.withdrawMoney(withdrawAmount);
+    console.log(newBalance);
   });
 
 });
